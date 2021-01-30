@@ -1,5 +1,5 @@
 require('dotenv').config();
-const path = require('path');
+const path = require('path'); 
 const express = require('express');
 const createError = require('http-errors');
 const logger = require('morgan');
@@ -21,6 +21,7 @@ app.use(bindUserToLocals);
 // Routers
 const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');
+const userInterRouter = require('./routes/userInter.routes');
 
 // Express View engine setup
 
@@ -41,7 +42,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 // Routes middleware
 app.use('/', indexRouter);
 app.use('/', authRouter);
-
+app.use('/', userInterRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
