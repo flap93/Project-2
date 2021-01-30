@@ -15,6 +15,9 @@ const app = express();
 require('./configs/db.config');
 require('./configs/session.config')(app);
 
+const bindUserToLocals = require("./configs/user-locals.config");
+app.use(bindUserToLocals);
+
 // Routers
 const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');

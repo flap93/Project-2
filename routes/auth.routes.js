@@ -7,6 +7,11 @@ const router = new Router();
 
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
+const routeGuard = require("../configs/route-guard.config");
+
+////////////////////////////////////////
+////////// SIGNUP //////////////////////
+////////////////////////////////////////
 
 // .get() route ==> to display the signup form to users
 router.get('/signup', (req, res) => res.render('auth/signup'));
@@ -45,9 +50,10 @@ router.post('/signup', (req, res, next) => {
       
     });
     }) 
-    .then(user => {
-      console.log('Newly created user is: ', {user});
-      res.render('/userProfile');
+    .then((responseFromDB) => {
+      //console.log('Newly created user is: ', {userFromDB});
+      req.session.currentUser = responseFromDB;
+      res.redirect('/userProfile');
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -62,7 +68,7 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
-router.get('/userProfile', (req, res) => res.render('users/user-profile', { userInSession: req.session.currentUser }));
+//router.get('/userProfile', (req, res) => res.render('users/user-profile', { userInSession: req.session.currentUser }));
 
 /////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////LOGIN/////////////////////////////////////////
@@ -85,15 +91,16 @@ router.post('/login', (req, res, next) => {
   }
 
   User.findOne({ email })
-    .then(user => {
-      if (!user) {
+    .then((responseFromDB) => {
+      if (!responseFromDB) {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      } else if (bcryptjs.compareSync(password, responseFromDB.passwordHash)) {
         // res.render('users/user-profile', { user });
-        req.session.currentUser = user;
-        console.log(user);
-        res.redirect('userProfile');
+        req.session.currentUser = responseFromDB;
+        //console.log(user);
+        //res.render('users/user-profile.hbs', {user: responseFromDB} );
+        res.redirect('/userProfile')
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -101,9 +108,25 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-// router.get('/profile', (req, res, next){
-//   res.render("user/user-profile.hbs", {userInSession: req.session.currentUser});
-// })
+
+
+router.get('/userProfile', routeGuard, (req, res, next) => {
+  res.render("users/user-profile.hbs");
+ 
+});
+
+////////////////////////////////////////
+////////// LOGOUT //////////////////////
+////////////////////////////////////////
+
+router.post("/logout", (req, res, next) => {
+  // console.log("user in sess before: ", req.session.currentUser);
+  req.session.destroy();
+  // console.log("user in sess after: ", req.session);
+
+  res.redirect("/");
+});
+
 module.exports = router;
 
 
