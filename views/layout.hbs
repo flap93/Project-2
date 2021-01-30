@@ -6,14 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
    <button type="button" class="btn btn-primary">Primary</button>
   <body>
-    <div class="container">
-      {{{body}}}
-    </div>
+    
+  <nav>
+     {{#if userInSession}}
+    <ul>
+      <li id="to-left">
+        <p><a href="/"> Users - demo </a></p>
+      </li>
+      <li id="to-right">
+       {{! <a href="/example/secret-page"></a>}}
+          <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+          </form>
+            {{else}}
+        <a href="/signup">Signup</a> <span> | </span>
+        <a href="/login">Login</a> {{!-- !!! --}}
+ 
+      </li>
+    </ul>
+    {{/if}}
+  </nav>
+
+    {{{body}}}
 
     <script src="/javascripts/script.js"></script>
   </body>
