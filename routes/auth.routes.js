@@ -100,7 +100,7 @@ router.post('/login', (req, res, next) => {
         req.session.currentUser = responseFromDB;
         //console.log(user);
         //res.render('users/user-profile.hbs', {user: responseFromDB} );
-        res.redirect('/userHome')
+        res.redirect('/userHome');
 
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
@@ -113,7 +113,7 @@ router.post('/login', (req, res, next) => {
 
 router.get('/userProfile', routeGuard, (req, res, next) => {
   res.render("users/user-profile.hbs");
- 
+
 });
 
 ////////////////////////////////////////

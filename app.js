@@ -11,9 +11,11 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+
 // Set up the database
 require('./configs/db.config');
 require('./configs/session.config')(app);
+require('./configs/api.config');
 
 const bindUserToLocals = require("./configs/user-locals.config");
 app.use(bindUserToLocals);

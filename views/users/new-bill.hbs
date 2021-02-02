@@ -1,1 +1,44 @@
 <h3>{{title}}</h3>
+
+
+
+<div id="form">
+  <h2>Create new reminder</h2>
+  <form action="/newBill" method="POST">
+    <label for="inputName"> Name</label>
+    <input type="text" id="input-email" name="name" placeholder="Bill name"  value="{{reminder.name}}"/>
+
+    <label for="inputPhoneNumber">Phone number</label>
+    <input type="number" name="phoneNumber" placeholder="ex. 1(111)-111-1111"  value="{{reminder.phoneNumber}}" />
+
+    {{!-- <label for="time">Reminder Date</label> --}}
+    {{!-- <input type="text" name="time"  placeholder="Pick a Date"  value="{{reminder.time}}" /> --}}
+    {{!-- <input type="text" name="time"  placeholder="Pick a Date"  value={{reminder.time}}/> --}}
+
+    <label for="time">Reminder Date:</label>
+    <input type="date" name="time"
+      placeholder="Pick a Date"
+      value="2021-02-01"
+      min="2021-02-01" >
+
+  
+
+  {{!-- <label for='selectNotification'> Notification Time </label>
+  <select name="notification" value="{{reminder.notification}}">
+      <option {{reminder.notification}} == '' value='' >Select a time</option>
+      <option {{reminder.notification}} == '15' value='15' >15 Minutes</option>
+      <option {{reminder.notification}} == '30' value='30' >30 Minutes</option>
+      <option {{reminder.notification}} == '45' value='45' >45 Minutes</option>
+      <option {{reminder.notification}} == '60' value='60' >60 Minutes</option>
+  </select> --}}
+  <label for="selectNotification">Notification Time </label>
+  <input type="time" name="notification" value="13:30">
+
+
+    <button type="submit">Create</button>
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+
+  </form>
+</div>
