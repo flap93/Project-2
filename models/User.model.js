@@ -8,7 +8,7 @@ const userSchema = new Schema(
       required: [true, 'Username is required.'],
       unique: true
     },
-    reminder: [{type: Schema.Types.ObjectId, ref: "Reminder" }],
+    reminders: [{type: Schema.Types.ObjectId, ref: "Reminder" }],
     email: {
       type: String,
       required: [true, 'Email is required.'],

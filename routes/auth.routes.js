@@ -53,7 +53,7 @@ router.post('/signup', (req, res, next) => {
     .then((responseFromDB) => {
       //console.log('Newly created user is: ', {userFromDB});
       req.session.currentUser = responseFromDB;
-      res.redirect('/userProfile');
+      res.redirect('/userHome');
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {

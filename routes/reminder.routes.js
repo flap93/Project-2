@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Reminder = require("../models/Reminder.model");
+const UserModel = require('../models/User.model');
 
 // const momentTimeZone = require('moment-timezone');
 // const moment = require('moment');
@@ -10,7 +11,7 @@ const Reminder = require("../models/Reminder.model");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
-const schedule = require('node-schedule-tz');
+// const schedule = require('node-schedule-tz');
 
 
 // const getTimeZones = () => {
@@ -24,42 +25,50 @@ const schedule = require('node-schedule-tz');
 
 
 // GET: /reminders
-router.get('/reminders', (req, res, next) => {
+router.get('/userHome', (req, res, next) => {
 
-  if (!req.session.user){
+  if (!req.session.currentUser){
     res.redirect("/login");
     return;
   }
 
-  Reminder.find({ email })
-  .then((reminders) => {
-      res.render('users/user-home', {reminders: reminders});
+  UserModel.findById(req.session.currentUser._id)
+  .populate("reminders")
+  .then((userFromDB) => {
+    console.log({userFromDB: userFromDB.reminders[0]})
+      res.render('users/user-home', {reminders: userFromDB.reminders});
     });
 });
-
 // GET: /reminders/create
-router.get('/create', (req, res, next) => {
-  res.render('reminders/create', {
-    // timeZones: getTimeZones(),
-    reminder: new Reminder({name: '',
-                                  phoneNumber: '',
-                                  notification: '',
-                                  timeZone: '',
-                                  date: ''})});
-// next(console.log(`llllllllllllllllllllll${getTimeZones()}`));
-});
+
+router.get("/create", (req, res, next) => res.render("reminders/create.hbs"));
 
 
 // POST: /reminders
 router.post('/create', (req, res, next) => {
-  const { name, phoneNumber, notification, timeZone, date } = req.body;
+  if(!req.session.currentUser) {
+    res.redirect("/login")
+  }
+  const { name, phoneNumber, date } = req.body;
   req.body.status = false;
 
   // console.log(`Helllll  pppppp ${time}`);
-  Reminder.create({ name, phoneNumber, notification, timeZone, date }) 
+  Reminder.create({ name, phoneNumber, date }) 
   // Reminder.save()
   .then((reminder) => {
       console.log(reminder);
+      UserModel.findById(req.session.currentUser._id)
+      .then(userFromDB => {                             // router.get('/deleteReminder/:reminderIdToDelete')
+        userFromDB.reminders.push(reminder._id) // userFromDB.reminders.filter(rembinderId => reminderId !== req.params.reminderIdToDelete)
+        userFromDB.save()
+        .then((updatedUser) => {
+          req.session.currentUser = updatedUser
+          res.render('users/user-home', {reminder});
+        }).catch(error => next(error))
+
+        
+      }).catch(error => next(error))
+    
 
     // console.log("DBDate: " + typeof reminder.date);
     // var DBDate = reminder.date;
@@ -81,7 +90,6 @@ router.post('/create', (req, res, next) => {
     // var hourArray = hourTime.split(":");
     // var date = new Date(dYear, dMonth, dDay, hourArray[0], hourArray[1], 0,);
     // // console.log(`this is date ${date}`);
-      res.render('users/user-home', {reminder});
     })
     .catch((err) => console.log(`error while sending message after function ${err}`));
 });
