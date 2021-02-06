@@ -2,6 +2,8 @@ const express = require('express');
 const momentTimeZone = require('moment-timezone');
 const moment = require('moment');
 const Reminder = require("../models/Reminder.model");
+const twilio = require('twilio');
+
 const router = express.Router();
 var cron = require('node-cron');
 
@@ -10,9 +12,9 @@ const getTimeZones = () => {
 };
 
 
-cron.schedule('* * * * *', () => {
-  console.log('running a task every minute');
-});
+// cron.schedule('* * * * *', () => {
+//   console.log('running a task every minute');
+// });
 
 
 // GET: /reminders
@@ -32,19 +34,19 @@ router.get('/create', (req, res, next) => {
                                   notification: '',
                                   timeZone: '',
                                   time: ''})});
+// next(console.log(`llllllllllllllllllllll${getTimeZones()}`));
 });
 
 
 // POST: /reminders
 router.post('/create', (req, res, next) => {
-  const { name, phoneNumber, notification, timeZone } = req.body;
-  const time = moment(req.body.time, 'MM-DD-YYYY hh:mma');
+  const { name, phoneNumber, notification, timeZone, time } = req.body;
   console.log(`Helllll  pppppp ${time}`);
 
   
 
   Reminder.create({ name, phoneNumber, notification, timeZone, time }) 
-  Reminder.save()
+  // Reminder.save()
   .then((reminder) => {
       console.log(reminder);
       res.render('users/user-home', {reminder});
