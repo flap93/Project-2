@@ -9,8 +9,8 @@ const reminderSchema = new Schema (
   {
   name: String,
   phoneNumber: String,
-  notification: Number,
-  timeZone: String,
+  // notification: Number,
+  // timeZone: String,
   date: {type: Date, default: Date.now},
   }
 );
