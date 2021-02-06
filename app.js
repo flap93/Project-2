@@ -8,18 +8,25 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
-const scheduler = require('./configs/scheduler.config');
-const checkAndSendNecessaryMessages = require('./configs/marcos.config');
+// const scheduler = require('./configs/scheduler.config');
+// const checkAndSendNecessaryMessages = require('./configs/marcos.config');
 const app = express();
 
+
+
+//Message from Twilio
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
+const schedule = require('node-schedule-tz');
 
 // Set up the database
 require('./configs/db.config');
 require('./configs/session.config')(app);
-require('./configs/api.config');
-require('./configs/messagesWorker');
-require('./configs/scheduler.config');
-require('./configs/marcos.config');
+// require('./configs/api.config');
+// require('./configs/messagesWorker');
+// require('./configs/scheduler.config');
+// require('./configs/marcos.config');
 
 
 const bindUserToLocals = require("./configs/user-locals.config");
@@ -67,7 +74,7 @@ app.use((error, req, res) => {
   res.render('error');
 
 });
-scheduler.start();
+// scheduler.start();
 
 
 module.exports = app;
