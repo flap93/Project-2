@@ -75,7 +75,18 @@ router.get('/newBill', (req, res) => res.render('users/new-bill', { title:'this 
 //   }
 // };
 // });
-
+// YOUR DETAILS ROUTE SHOULD ALWAYS BE THE LAST ROUTE IN THE ROUTES FILE
+// GET route to display the details of a specific book
+router.get("/user/:userId", (req, res, next) => {
+  // console.log("ID: ", req.params.bookId);
+  Reminder.findById(req.params.userId)
+    .populate("reminder")
+    .then((foundReminder) => {
+      // console.log(foundBook);
+      res.render("reminders/reminders-details.hbs", { foundReminder });
+    })
+    .catch((err) => console.log(`Error while getting the reminders details from DB: ${err}`));
+});
 
 
 

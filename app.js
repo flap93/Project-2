@@ -8,18 +8,18 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
-const scheduler = require('./configs/scheduler.config');
-const checkAndSendNecessaryMessages = require('./configs/marcos.config');
+  // const scheduler = require('./configs/scheduler.config');
+  // const checkAndSendNecessaryMessages = require('./configs/marcos.config');
 const app = express();
 
 
 // Set up the database
 require('./configs/db.config');
 require('./configs/session.config')(app);
-require('./configs/api.config');
-require('./configs/messagesWorker');
-require('./configs/scheduler.config');
-require('./configs/marcos.config');
+// require('./configs/api.config');
+// require('./configs/messagesWorker');
+// require('./configs/scheduler.config');
+// require('./configs/marcos.config');
 
 
 const bindUserToLocals = require("./configs/user-locals.config");
@@ -67,7 +67,7 @@ app.use((error, req, res) => {
   res.render('error');
 
 });
-scheduler.start();
+//scheduler.start();
 
 
 module.exports = app;
