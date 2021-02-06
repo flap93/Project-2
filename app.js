@@ -8,8 +8,8 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
-// const scheduler = require('./configs/scheduler.config');
-// const checkAndSendNecessaryMessages = require('./configs/marcos.config');
+  // const scheduler = require('./configs/scheduler.config');
+  // const checkAndSendNecessaryMessages = require('./configs/marcos.config');
 const app = express();
 
 
@@ -74,7 +74,7 @@ app.use((error, req, res) => {
   res.render('error');
 
 });
-// scheduler.start();
+//scheduler.start();
 
 
 module.exports = app;
