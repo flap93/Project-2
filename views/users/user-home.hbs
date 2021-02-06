@@ -1,5 +1,10 @@
-<h1>{{title}}</h1>
-{{!-- <form action="/newBill" method="GET">
-  <button type="submit">Create new Bill</button>
-</form> --}}
-<a href="/newBill"> Create new bill </a>
+{{!-- <h1>{{title}}</h1> --}}
+
+<ul>
+  {{!-- {{#each reminder}} --}}
+      <li><p>{{reminder.name }}</p></li>
+      <li><p>{{reminder.notification }}</p></li>
+      <li><p>{{reminder.time }}</p></li>
+  {{!-- {{/each}} --}}
+</ul>
+{{!-- <a href="/newBill"> Create new bill </a> --}}

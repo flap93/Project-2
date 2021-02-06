@@ -8,7 +8,8 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
-
+const scheduler = require('./configs/scheduler.config');
+const checkAndSendNecessaryMessages = require('./configs/marcos.config');
 const app = express();
 
 
@@ -16,6 +17,10 @@ const app = express();
 require('./configs/db.config');
 require('./configs/session.config')(app);
 require('./configs/api.config');
+require('./configs/messagesWorker');
+require('./configs/scheduler.config');
+require('./configs/marcos.config');
+
 
 const bindUserToLocals = require("./configs/user-locals.config");
 app.use(bindUserToLocals);
@@ -24,6 +29,7 @@ app.use(bindUserToLocals);
 const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');
 const userInterRouter = require('./routes/userInter.routes');
+const reminderRouter = require('./routes/reminder.routes');
 
 // Express View engine setup
 
@@ -45,6 +51,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/', userInterRouter);
+app.use('/', reminderRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
@@ -58,6 +65,9 @@ app.use((error, req, res) => {
   // render the error page
   res.status(error.status || 500);
   res.render('error');
+
 });
+scheduler.start();
+
 
 module.exports = app;
