@@ -12,27 +12,27 @@
   <body>
     
   <nav>
-     {{#if userInSession}}
+    {{#if userInSession}}
     <ul>
       <li id="to-left">
         <p><a href="/"> Users - demo </a></p>
       </li>
       <li id="to-right">
-       {{! <a href="/example/secret-page"></a>}}
+      {{! <a href="/example/secret-page"></a>}}
           <form action="/logout" method="POST">
             <button type="submit">Logout</button>
           </form>
             {{else}}
         <a href="/signup">Signup</a> <span> | </span>
         <a href="/login">Login</a> {{!-- !!! --}}
- 
+
       </li>
     </ul>
     {{/if}}
   </nav>
 
     {{{body}}}
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="/javascripts/script.js"></script>
   </body>
 

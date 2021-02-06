@@ -13,6 +13,13 @@ const mongoose = require('mongoose');
 const app = express();
 
 
+
+//Message from Twilio
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
+const schedule = require('node-schedule-tz');
+
 // Set up the database
 require('./configs/db.config');
 require('./configs/session.config')(app);
