@@ -1,18 +1,32 @@
 
 <h2>Welcome, {{ userInSession.username }}!</h2>
 <h2>this is where all your reminders are going to be</h2>
+
+<br>
+    <a href="/create">Create a new reminder</a>
+
+    
+  
 <ul>
   {{#each reminders}}
-  <li>
-    <p>{{this.name }}</p>
-  </li>
-  <li>
-    <p>{{this.date }}</p>
-  </li>
-  
+  <li> {{ this.name}} </li>
+  <li> Remind on: {{ this.date}} </li>
+  <li>Send Message to: {{ this.phoneNumber}}  </li>
+
+  <form action="/updateReminder/{{this.id}}" method="POST">
+        <button>Edit</button>
+      </form>
+
+  <form action="/deleteReminder/{{this.id}}" method="GET">
+        <button>Delete</button>
+      </form>
+
+
+  {{!-- <br>
+    <p><a href="/deleteReminder">Delete reminder</a></p> --}}
   {{/each}}
 </ul>
+<br>
 
-<button>
-    <a href="/create">Create a new reminder</a>
-  </button>
+
+
