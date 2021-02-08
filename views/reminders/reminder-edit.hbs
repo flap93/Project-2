@@ -1,0 +1,17 @@
+
+<h2>Edit {{ reminder.name }}</h2>
+
+<form action="/updateReminder/{{reminder._id}}" method="POST">
+   <label for="inputName"> Name</label>
+    <input type="text" id="input-email" name="name" placeholder="{{reminder.name}}"  value="{{reminder.name}}"/>
+
+    <label for="inputPhoneNumber">Phone number</label>
+    <input type="number" name="phoneNumber" placeholder="{{reminder.phoneNumber}}"  value="{{reminder.phoneNumber}}" />
+
+    <label for="date">Reminder Date:</label>
+		{{!-- <input type="string" name="time" placeholder="MM-DD-YYYY hh:mma"> --}}
+    <input type="datetime-local" name="date" placeholder="{{reminder.date}}">
+    
+
+  <button type="submit"> Save changes </button>
+</form>
