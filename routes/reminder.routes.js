@@ -113,6 +113,10 @@ router.get("/sendMessage", (req, res, next) => {
 // ********************************************************************************
 
 router.get("/deleteReminder/:reminderIdToDelete", (req, res, next) => {
+  if (!req.session.currentUser) {
+    res.redirect("/login");
+    return;
+  }
   // const idToRemove = req.params.reminderIdToDelete;
   UserModel.findById(req.session.currentUser._id).then((userFromDB) => {
     console.log(req.session.currentUser._id);
@@ -128,8 +132,51 @@ router.get("/deleteReminder/:reminderIdToDelete", (req, res, next) => {
       })
       .catch((err) => console.log(`error while deleting reminder ${err}`));
   });
-  // router.get('/deleteReminder/:reminderIdToDelete')
-  // userFromDB.reminders.filter(reminderId => reminderId !== req.params.reminderIdToDelete)
+});
+
+// ********************************************************************************
+// ************************ GET: /editReminder **********************************
+// ********************************************************************************
+router.get("/editReminder/:reminderId", (req, res, next) => {
+  if (!req.session.currentUser) {
+    res.redirect("/login");
+    return;
+  }
+  UserModel.findById(req.session.currentUser._id)
+    .populate("reminder")
+    .then((foundUser) => {
+      // console.log("found reminder: ", foundReminder);
+
+      // we need to filter all the users who are not the one that is currently in the found reminder
+      Reminder.findById(req.params.reminderId)
+      .then((reminder) => {
+        
+        res.render("reminders/reminder-edit.hbs", { foundUser, reminder });
+      });
+
+    }).catch((err) => console.log(`Error while getting the reminder from DB for editing: ${err}`));
+});
+
+
+
+// ********************************************************************************
+// ************************ POST: /updateReminder **********************************
+// ********************************************************************************
+router.post("/updateReminder/:reminderId", (req, res, next) => {
+  if (!req.session.currentUser) {
+    res.redirect("/login");
+    return;
+  }
+  const { name, phoneNumber, date } = req.body;
+
+  Reminder.findByIdAndUpdate(req.params.reminderId, { name, phoneNumber, date }, { new: true })
+    .then(() => {
+      // console.log("updated:", updatedReminder);
+     
+
+      res.redirect(`/userHome`);
+    })
+    .catch((err) => console.log(`Error while saving the updates on a specific reminder: ${err}`));
 });
 
 module.exports = router;

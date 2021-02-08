@@ -15,7 +15,7 @@ module.exports = app => {
       secret: process.env.SESS_SECRET,
       resave: false,
       saveUninitialized: true,
-      cookie: { maxAge: 5 * 60000 } // 60 * 1000 ms === 1 min
+      cookie: { maxAge: 15 * 60000 } // 60 * 1000 ms === 1 min
     })
   );
 };

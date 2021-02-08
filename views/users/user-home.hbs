@@ -1,6 +1,7 @@
-
+<br>
 <h2>Welcome, {{ userInSession.username }}!</h2>
-<h2>this is where all your reminders are going to be</h2>
+
+{{#if reminders}}
 
 <br>
     <a href="/create">Create a new reminder</a>
@@ -13,7 +14,7 @@
   <li> Remind on: {{ this.date}} </li>
   <li>Send Message to: {{ this.phoneNumber}}  </li>
 
-  <form action="/updateReminder/{{this.id}}" method="POST">
+  <form action="/editReminder/{{this.id}}" method="GET">
         <button>Edit</button>
       </form>
 
@@ -27,6 +28,8 @@
   {{/each}}
 </ul>
 <br>
-
+{{else}}
+<h2>This is where all your reminders are going to be!</h2>
+{{/if}}
 
 
