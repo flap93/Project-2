@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(() => {
     console.log('calling reminders');
-    axios.get('http://localhost:3000/sendMessage')
+    axios.get('https://remind-mee.herokuapp.com/sendMessage')
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err));
 
