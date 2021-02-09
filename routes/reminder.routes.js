@@ -48,7 +48,7 @@ router.post("/create", (req, res, next) => {
   const { name, phoneNumber, reminderDate, paymentDue } = req.body;
   req.body.status = false;
 
-  Reminder.create({ name, phoneNumber, reminderDate, paymentDue })
+  Reminder.create({ name, phoneNumber, reminderDate, paymentDue, ownerName: req.session.currentUser.username })
     // Reminder.save()
     .then((reminder) => {
       console.log(reminder);
@@ -73,23 +73,15 @@ router.post("/create", (req, res, next) => {
 
 router.get("/sendMessage", (req, res, next) => {
   const currentDate = new Date();
-  const futureDate = new Date(currentDate.getTime() + 10 * 60000);
-
-  // const currentDateDay = currentDate.getDate();
-  // const currentDateHour = currentDate.getHours();
-
-  // const futureDateDay = futureDate.getDate();
-  // const futureDateHour = futureDate.getHours();
+  const futureDate = new Date(currentDate.getTime() + 5 * 60000);
   
-
-
   console.log(
     `the date range is ${currentDate.toISOString()} to --- ${futureDate.toISOString()}`
   );
 
   Reminder.find({
     //query today up to tonight
-    date: {
+    reminderDate: {
       $gte: currentDate.toISOString(),
       $lt: futureDate.toISOString(),
     },
@@ -101,10 +93,10 @@ router.get("/sendMessage", (req, res, next) => {
     } else {
       reminders.forEach((reminder) => {
         console.log(`this one needs message ${reminder}`);
-
+        console.log(`user in session ----`, req.session);
         client.messages
           .create({
-            body: `Hey ${req.session.currentUser.name}! Your payment for ${reminder.name} is coming up on ${reminder.paymentDate}`,
+            body: `Hey ${reminder.ownerName}! Your payment for ${reminder.name} is coming up on ${reminder.paymentDue}`,
             to: `+1${reminder.phoneNumber}`,
             from: process.env.TWIL_NUM,
           })

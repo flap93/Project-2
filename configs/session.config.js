@@ -1,21 +1,24 @@
+  
+const session = require("express-session");
 
-// require session
-const session = require('express-session');
+const MongoStore = require("connect-mongo")(session);
 
-// since we are going to USE this middleware in the app.js,
-// let's export it and have it receive a parameter
-module.exports = app => {
-  // <== app is just a placeholder here
-  // but will become a real "app" in the app.js
-  // when this file gets imported/required there
+const mongoose = require("mongoose");
 
-  // use session
+module.exports = (app) => {
   app.use(
     session({
       secret: process.env.SESS_SECRET,
-      resave: false,
-      saveUninitialized: true,
-      cookie: { maxAge: 15 * 60000 } // 60 * 1000 ms === 1 min
+      resave: true,
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 15 * 60000 // 60 * 1000 ms ===> 1 min
+      },
+      store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        // ttl ==> time to live
+        ttl: 24 * 60 * 60 // 1 day
+      })
     })
   );
 };

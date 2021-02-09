@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err));
 
-  },1 * 60000); //run the function every five minutes
+  },2 * 60000); //run the function every five minutes
   
   console.log('IronGenerator JS imported successfully!');
 

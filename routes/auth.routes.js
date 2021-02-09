@@ -51,7 +51,7 @@ router.post('/signup', (req, res, next) => {
     });
     }) 
     .then((responseFromDB) => {
-      //console.log('Newly created user is: ', {userFromDB});
+      console.log('Newly created user is: ', {responseFromDB});
       req.session.currentUser = responseFromDB;
       res.redirect('/userHome');
     })
