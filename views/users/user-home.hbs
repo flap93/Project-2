@@ -11,8 +11,9 @@
 <ul>
   {{#each reminders}}
   <li> {{ this.name}} </li>
-  <li> Remind on: {{ this.date}} </li>
-  <li>Send Message to: {{ this.phoneNumber}}  </li>
+  <li> Remind me on: {{ this.reminderDate}}</li>
+  <li> Payment due date : {{ this.paymentDue}}</li>
+  <li>Send message to: {{ this.phoneNumber}}  </li>
 
   <form action="/editReminder/{{this.id}}" method="GET">
         <button>Edit</button>

@@ -11,7 +11,8 @@ const reminderSchema = new Schema (
   phoneNumber: String,
   // notification: Number,
   // timeZone: String,
-  date: {type: Date, default: Date.now},
+  reminderDate: {type: Date, default: Date.now},
+  paymentDue: {type: Date, default: Date.now}
   }
 );
 
