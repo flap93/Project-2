@@ -20,6 +20,9 @@ router.get("/userHome", (req, res, next) => {
   UserModel.findById(req.session.currentUser._id)
     .populate("reminders")
     .then((userFromDB) => {
+
+
+      
       // console.log({userFromDB: userFromDB.reminders[0]});
       res.render("users/user-home", { reminders: userFromDB.reminders });
     });
@@ -42,10 +45,10 @@ router.post("/create", (req, res, next) => {
   if (!req.session.currentUser) {
     res.redirect("/login");
   }
-  const { name, phoneNumber, date } = req.body;
+  const { name, phoneNumber, reminderDate, paymentDue } = req.body;
   req.body.status = false;
 
-  Reminder.create({ name, phoneNumber, date })
+  Reminder.create({ name, phoneNumber, reminderDate, paymentDue })
     // Reminder.save()
     .then((reminder) => {
       console.log(reminder);
@@ -70,7 +73,15 @@ router.post("/create", (req, res, next) => {
 
 router.get("/sendMessage", (req, res, next) => {
   const currentDate = new Date();
-  const futureDate = new Date(currentDate.getTime() + 5 * 60000);
+  const futureDate = new Date(currentDate.getTime() + 10 * 60000);
+
+  // const currentDateDay = currentDate.getDate();
+  // const currentDateHour = currentDate.getHours();
+
+  // const futureDateDay = futureDate.getDate();
+  // const futureDateHour = futureDate.getHours();
+  
+
 
   console.log(
     `the date range is ${currentDate.toISOString()} to --- ${futureDate.toISOString()}`
@@ -93,7 +104,7 @@ router.get("/sendMessage", (req, res, next) => {
 
         client.messages
           .create({
-            body: `Just a friendly reminder that your payment for ${reminder.name} is coming up on ${reminder.date}`,
+            body: `Hey ${req.session.currentUser.name}! Your payment for ${reminder.name} is coming up on ${reminder.paymentDate}`,
             to: `+1${reminder.phoneNumber}`,
             from: process.env.TWIL_NUM,
           })
@@ -167,9 +178,9 @@ router.post("/updateReminder/:reminderId", (req, res, next) => {
     res.redirect("/login");
     return;
   }
-  const { name, phoneNumber, date } = req.body;
+  const { name, phoneNumber, reminderDate, paymentDate, paymentDue} = req.body;
 
-  Reminder.findByIdAndUpdate(req.params.reminderId, { name, phoneNumber, date }, { new: true })
+  Reminder.findByIdAndUpdate(req.params.reminderId, { name, phoneNumber, reminderDate, paymentDue }, { new: true })
     .then(() => {
       // console.log("updated:", updatedReminder);
      

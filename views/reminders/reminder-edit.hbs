@@ -8,9 +8,13 @@
     <label for="inputPhoneNumber">Phone number</label>
     <input type="number" name="phoneNumber" placeholder="{{reminder.phoneNumber}}"  value="{{reminder.phoneNumber}}" />
 
-    <label for="date">Reminder Date:</label>
+    <label for="reminderDate">Reminder Date:</label>
 		{{!-- <input type="string" name="time" placeholder="MM-DD-YYYY hh:mma"> --}}
-    <input type="datetime-local" name="date" placeholder="{{reminder.date}}">
+    <input type="datetime-local" name="reminderDate" placeholder="{{reminder.reminderDate}}">
+
+     <label for="paymentDue">Payment due:</label>
+		{{!-- <input type="string" name="time" placeholder="MM-DD-YYYY hh:mma"> --}}
+    <input type="date" name="paymentDue">
     
 
   <button type="submit"> Save changes </button>
