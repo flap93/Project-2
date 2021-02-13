@@ -2,20 +2,20 @@
  /////////////////////////////////////////Layout//////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////// */
 body {
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-image: url("/images/511885.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   max-height: fit-content;
 }
-nav{
+nav {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.733);
   width: 100%;
   height: 10%;
   display: flex;
 }
-nav img{
+nav img {
   /* border: 4px solid black; */
   margin-left: -100px;
   margin-top: -26px;
@@ -23,7 +23,7 @@ nav img{
   margin-left: -120px;
   position: relative;
 }
-nav p{
+nav p {
   position: absolute;
   /* margin-top: 23px; */
   margin-left: -240px;
@@ -31,7 +31,7 @@ nav p{
   color: rgb(0, 0, 0);
   -webkit-text-stroke: 0.7px cornflowerblue;
 }
-nav ul{
+nav ul {
   list-style: none;
   float: right;
   display: flex;
@@ -39,7 +39,7 @@ nav ul{
   padding-right: 80px;
   margin: 0px 0;
 }
-nav li{
+nav li {
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -50,21 +50,21 @@ nav li{
   padding-right: 20px;
   text-decoration: none;
 }
-#homeLink{
+#homeLink {
   margin-left: 200%;
 }
-#bar{
+#bar {
   /* padding: 0 -15px 0 0; */
   font-size: 20px;
   text-align: center;
 }
-#bar-user{
+#bar-user {
   font-size: 20px;
   text-align: center;
 }
 #in-sess-rem {
   margin-left: 60%;
-  }
+}
 /* #logout button{
   width: fit-content;
   margin-top: -3%;
@@ -84,8 +84,7 @@ nav li{
  /////////////////////////////////////////Home Page//////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////// */
 
-
-#remembering-is-the-key-text{
+#remembering-is-the-key-text {
   padding: 13% 0 0 0;
   font-size: 8rem;
   font-weight: 800;
@@ -93,10 +92,12 @@ nav li{
   color: #6495ed;
   -webkit-text-stroke: 3px rgb(43 12 26);
   /* color: white; */
-  text-shadow: 9px 1px 0 rgb(68 4 36 / 70%), 6px 1px 0 rgb(68 4 36 / 70%), 1px 1px 0 rgb(68 4 36 / 70%), 10px 1px 0 rgb(68 4 36 / 70%), 1px 1px 0 rgb(68 4 36 / 70%);
+  text-shadow: 9px 1px 0 rgb(68 4 36 / 70%), 6px 1px 0 rgb(68 4 36 / 70%),
+    1px 1px 0 rgb(68 4 36 / 70%), 10px 1px 0 rgb(68 4 36 / 70%),
+    1px 1px 0 rgb(68 4 36 / 70%);
 }
 
-#remembering-is-the-key-text span{
+#remembering-is-the-key-text span {
   padding-left: 5%;
 }
 #home-subtitle {
@@ -104,22 +105,18 @@ nav li{
   /* text-shadow: #000 5px; */
   font-size: 20px;
   color: #6495ed;
-  -webkit-text-stroke: .3px black;
-  text-shadow:
-  1px 2px 0 black,
-  1px 2px 0 black,  
-  4px 1px 0 black,
-  3px 1px 0 black,
-  1px 1px 0 black;
+  -webkit-text-stroke: 0.3px black;
+  text-shadow: 1px 2px 0 black, 1px 2px 0 black, 4px 1px 0 black,
+    3px 1px 0 black, 1px 1px 0 black;
 }
-#get-free{
+#get-free {
   width: 14rem;
-} 
-#get-free input{
+}
+#get-free input {
   height: 50px;
   font-size: 17px;
   color: #43a3e6;
-  -webkit-text-stroke: .7px black;
+  -webkit-text-stroke: 0.7px black;
   font-weight: bold;
   font-family: sans-serif;
   background: rgba(0, 0, 0, 0.233);
@@ -127,14 +124,12 @@ nav li{
   border: 3px solid #52194e;
   cursor: pointer;
   transition: 0.3s ease background;
-} 
+}
 #get-free input:hover {
   background-color: rgba(255, 255, 255, 0.322);
   color: cornflowerblue;
   transition: 0.3s ease background;
 }
-
-
 
 a {
   color: rgb(82, 141, 250);
@@ -146,7 +141,7 @@ a {
 /* ///////////////////////////////////////////////////////////////////////////////////////
  /////////////////////////////////////////Sign Up//////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////// */
-#sign-up-text{
+#sign-up-text {
   padding: 12% 0 0 0;
   text-align: center;
   color: cornflowerblue;
@@ -154,12 +149,14 @@ a {
   font-size: 2.5em;
   /* color: rgb(82, 141, 250); */
   -webkit-text-stroke: 1.5px black;
-  text-shadow: 1px 2px 0  rgba(68, 4, 36, 0.698),1px 2px 0  rgba(68, 4, 36, 0.698),4px 1px 0  rgba(68, 4, 36, 0.698), 3px 1px 0  rgba(68, 4, 36, 0.698), 1px 1px 0  rgba(68, 4, 36, 0.698);
+  text-shadow: 1px 2px 0 rgba(68, 4, 36, 0.698),
+    1px 2px 0 rgba(68, 4, 36, 0.698), 4px 1px 0 rgba(68, 4, 36, 0.698),
+    3px 1px 0 rgba(68, 4, 36, 0.698), 1px 1px 0 rgba(68, 4, 36, 0.698);
   /* font-weight: bold; */
   /* text-decoration: none; */
   /* font-size: 1.5em; */
 }
-#sign-up-form{
+#sign-up-form {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -169,8 +166,8 @@ a {
   border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.479);
 }
-#sign-up-form input{
-background-color: rgba(255, 255, 255, 0.65);
+#sign-up-form input {
+  background-color: rgba(255, 255, 255, 0.65);
 }
 #sign-up-form button {
   background: rgba(255, 255, 255, 0.644);
@@ -195,27 +192,21 @@ background-color: rgba(255, 255, 255, 0.65);
   color: #43a3e6;
   transition: 0.3s ease background;
 }
-#sign-up-form a, p{
+#sign-up-form a,
+p {
   /* padding: 17px 0; */
-  font-size: .8em;
-  }
-  #sign-up-form a{
-    text-decoration: underline; 
-    font-size: .8em;
-
-  }
-  
-
-
-
-
-
+  font-size: 0.8em;
+}
+#sign-up-form a {
+  text-decoration: underline;
+  font-size: 0.8em;
+}
 
 /* ///////////////////////////////////////////////////////////////////////////////////////
  /////////////////////////////////////////userHome//////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////// */
 
-#greet-text{
+#greet-text {
   padding: 0;
 }
 form {
@@ -229,12 +220,11 @@ form {
   /* text-shadow: .5px 1px 0  rgba(68, 4, 36, 0.698),.5px 1px 0  rgba(68, 4, 36, 0.698),2px .5px 0  rgba(68, 4, 36, 0.698), 1.5px .5px 0  rgba(68, 4, 36, 0.698), .5px .5px 0  rgba(68, 4, 36, 0.698); */
 
   /* margin-top: 80%; */
-  margin: 30px auto; 
+  margin: 30px auto;
   width: 380px;
 }
 
 form label {
-  
   display: inline-block;
   margin: 0 0 0 0;
   text-align: left;
@@ -317,42 +307,69 @@ ul li {
   font-size: 2em;
 }
 
+#bill-1 {
+  background-color: #ffffffa6;
+  font-weight: bold;
+  font-size: 150%;
+  color: purple;
+  width: fit-content;
+  display: flex;
+  border-radius: 20px;
+}
+#create-new-bill {
+  position: absolute;
+  top: 20%;
+  right: 80%;
+  font-weight: bold;
+  font-size: 250%;
+  border-radius: 10px;
+  background-color: violet;
+}
+#new-bill {
+  font-weight: bold;
+  font-size: 250%;
+  border-radius: 10px;
+  background-color: violet;
+}
+
 /* ///////////////////////////////////////////////////////////////////////////////////////
  /////////////////////////////////////////PROFILE//////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////// */
 
-  #welcome-profile{
-    margin-top: 180px;
+#welcome-profile {
+  margin-top: 180px;
 
-    padding: 12% 0 0 0;
-    text-align: center;
-    color: cornflowerblue;
-    font-weight: bold;
-    font-size: 2.5em;
-    /* color: rgb(82, 141, 250); */
-    -webkit-text-stroke: 1.5px black;
-    text-shadow: 1px 2px 0  rgba(68, 4, 36, 0.698),1px 2px 0  rgba(68, 4, 36, 0.698),4px 1px 0  rgba(68, 4, 36, 0.698), 3px 1px 0  rgba(68, 4, 36, 0.698), 1px 1px 0  rgba(68, 4, 36, 0.698);
-    /* font-weight: bold; */
-    /* text-decoration: none; */
-    /* font-size: 1.5em; */
-  }
+  padding: 12% 0 0 0;
+  text-align: center;
+  color: cornflowerblue;
+  font-weight: bold;
+  font-size: 2.5em;
+  /* color: rgb(82, 141, 250); */
+  -webkit-text-stroke: 1.5px black;
+  text-shadow: 1px 2px 0 rgba(68, 4, 36, 0.698),
+    1px 2px 0 rgba(68, 4, 36, 0.698), 4px 1px 0 rgba(68, 4, 36, 0.698),
+    3px 1px 0 rgba(68, 4, 36, 0.698), 1px 1px 0 rgba(68, 4, 36, 0.698);
+  /* font-weight: bold; */
+  /* text-decoration: none; */
+  /* font-size: 1.5em; */
+}
 
-  #wel-profile{
-    text-align: center;
-    color: cornflowerblue;
-    font-weight: bold;
-    font-size: 2.5em;
-    /* color: rgb(82, 141, 250); */
-    -webkit-text-stroke: 1.5px black;
-    text-shadow: 1px 2px 0  rgba(68, 4, 36, 0.698),1px 2px 0  rgba(68, 4, 36, 0.698),4px 1px 0  rgba(68, 4, 36, 0.698), 3px 1px 0  rgba(68, 4, 36, 0.698), 1px 1px 0  rgba(68, 4, 36, 0.698);
-    /* font-weight: bold; */
-    /* text-decoration: none; */
-    /* font-size: 1.5em; */
+#wel-profile {
+  text-align: center;
+  color: cornflowerblue;
+  font-weight: bold;
+  font-size: 2.5em;
+  /* color: rgb(82, 141, 250); */
+  -webkit-text-stroke: 1.5px black;
+  text-shadow: 1px 2px 0 rgba(68, 4, 36, 0.698),
+    1px 2px 0 rgba(68, 4, 36, 0.698), 4px 1px 0 rgba(68, 4, 36, 0.698),
+    3px 1px 0 rgba(68, 4, 36, 0.698), 1px 1px 0 rgba(68, 4, 36, 0.698);
+  /* font-weight: bold; */
+  /* text-decoration: none; */
+  /* font-size: 1.5em; */
+}
 
-  }
-
-  #reload{
-    margin-left: 810px;
-    margin-top: 80px;
-    }
- 
+#reload {
+  margin-left: 810px;
+  margin-top: 80px;
+}
