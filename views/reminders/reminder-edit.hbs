@@ -1,6 +1,6 @@
 
 <h2>Edit {{ reminder.name }}</h2>
-
+<div id="create">
 <form action="/updateReminder/{{reminder._id}}" method="POST">
    <label for="inputName"> Name</label>
     <input type="text" id="input-email" name="name" placeholder="{{reminder.name}}"  value="{{reminder.name}}"/>
@@ -19,3 +19,4 @@
 
   <button type="submit"> Save changes </button>
 </form>
+</div>
