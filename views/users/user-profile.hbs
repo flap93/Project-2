@@ -3,9 +3,9 @@
 {{#if userInSession}}
   <h2 id="welcome-profile">Welcome, {{ userInSession.username }}!</h2>
   <p id="wel-profile">This is your profile page my friend!</p>
-  <button id="reload">
+  {{!-- <button id="reload">
     <a href="/userProfile">Reload the page</a>
-  </button>
+  </button> --}}
 {{else}}
   <p>Still no logged in user, sorry!</p>
 {{/if}}
