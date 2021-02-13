@@ -19,8 +19,10 @@ router.get("/billHome", (req, res, next) => {
   }
 
   UserModel.findById(req.session.currentUser._id)
+  
     .populate("bills")
     .then((userFromDB) => {
+      console.log(userFromDB);
       // console.log({userFromDB: userFromDB.bills});
       res.render("bills/bill-home", { bills: userFromDB.bills });
     });
@@ -59,7 +61,7 @@ router.post("/createBill", (req, res, next) => {
                   .then((updatedUser) => {
                     req.session.currentUser = updatedUser;
                     // res.render("reminders/create.hbs", {billId : bill._id});
-                    res.redirect(`/create/${bill._id}`)
+                    res.redirect(`/create/${bill._id}`);
                     
                   }).catch((error) => next(error));
               }).catch((error) => next(error));
