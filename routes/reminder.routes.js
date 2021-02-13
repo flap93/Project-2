@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Reminder = require("../models/Reminder.model");
 const UserModel = require("../models/User.model");
+const Bill = require("../models/Bill.model");
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -31,17 +32,19 @@ router.get("/userHome", (req, res, next) => {
 // ********************************************************************************
 // ************************ GET: /create ******************************************
 // ********************************************************************************
-router.get("/create", (req, res, next) => {
+router.get("/create/:billId", (req, res, next) => {
+  // console.log('does it work?')
+  const { billId } = req.params;
   if (!req.session.currentUser) {
     res.redirect("/login");
   }
-  res.render("reminders/create.hbs");
+  res.render("reminders/create.hbs", { billId });
 });
 
 // ********************************************************************************
 // ************************ POST: /create *****************************************
 // ********************************************************************************
-router.post("/create", (req, res, next) => {
+router.post("/create/:billId", (req, res, next) => {
   if (!req.session.currentUser) {
     res.redirect("/login");
   }
@@ -52,15 +55,14 @@ router.post("/create", (req, res, next) => {
     // Reminder.save()
     .then((reminder) => {
       console.log(reminder);
-      UserModel.findById(req.session.currentUser._id)
-        .then((userFromDB) => {
+      Bill.findById(req.params.billId)
+        .then((billFromDB) => {
           // router.get('/deleteReminder/:reminderIdToDelete')
-          userFromDB.reminders.push(reminder._id); // userFromDB.reminders.filter(reminderId => reminderId !== req.params.reminderIdToDelete)
-          userFromDB
+          billFromDB.reminders.push(reminder._id); // userFromDB.reminders.filter(reminderId => reminderId !== req.params.reminderIdToDelete)
+          billFromDB
             .save()
-            .then((updatedUser) => {
-              req.session.currentUser = updatedUser;
-              res.redirect("/userHome");
+            .then(() => {
+              res.redirect("/billHome");
             })
             .catch((error) => next(error));
         })

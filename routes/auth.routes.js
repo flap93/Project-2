@@ -53,7 +53,7 @@ router.post('/signup', (req, res, next) => {
     .then((responseFromDB) => {
       console.log('Newly created user is: ', {responseFromDB});
       req.session.currentUser = responseFromDB;
-      res.redirect('/userHome');
+      res.redirect('/billHome');
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -100,7 +100,7 @@ router.post('/login', (req, res, next) => {
         req.session.currentUser = responseFromDB;
         //console.log(user);
         //res.render('users/user-profile.hbs', {user: responseFromDB} );
-        res.redirect('/userHome');
+        res.redirect('/billHome');
 
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
