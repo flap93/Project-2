@@ -31,9 +31,15 @@
 
 <br>
 {{else}}
-<h2 id="sign-up-text" id="greet-text">This is where all your bills are going to be!</h2>
+<h2 id="greet-text-one">This is where all your bills are going to be! <br>
+create some bills to start</h2>
+{{!-- <h2 id="greet-text-two">Create some bills to start</h2> --}}
+
 
 <br>
-<a href="/createBill">Create a new bill</a>
-
+<form id="greet-text-three" action="/createBill">
+    <input type="submit" value="Create my first bill!">
+</form>
+    {{!-- <a id="greet-text-three" href="/createBill">Create my first bill!</a> --}}
+    
 {{/if}}
