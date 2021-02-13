@@ -5,7 +5,7 @@
 
 <div id="form">
   <h2>Create new reminder</h2>
-  <form action="/create" method="POST">
+  <form action="/create/{{billId}}" method="POST">
     <label for="inputName"> Name</label>
     <input type="text" id="input-email" name="name" placeholder="Reminder name"  value="{{reminder.name}}"/>
 
@@ -16,7 +16,7 @@
 		{{!-- <input type="string" name="time" placeholder="MM-DD-YYYY hh:mma"> --}}
     <input type="datetime-local" name="reminderDate">
 
-     <label for="paymentDue">Payment due:</label>
+    <label for="paymentDue">Payment due:</label>
 		{{!-- <input type="string" name="time" placeholder="MM-DD-YYYY hh:mma"> --}}
     <input type="date" name="paymentDue">
 

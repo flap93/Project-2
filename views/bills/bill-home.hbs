@@ -1,0 +1,39 @@
+
+
+<br>
+<h2 id="sign-up-text" id="greet-text">Hi, {{ userInSession.username }}!</h2>
+
+
+{{#if bills}}
+
+<br>
+    <a href="/createBill">Create a new bill</a>
+
+    
+  
+<ul>
+  {{#each bills}}
+  <li> {{ this.accountName}} </li>
+  <li> Payment due date: {{ this.paymentDue}}</li>
+  <li> Reminder for this bill:{{ this.reminder}}</li>
+  
+
+  <form action="/editBill/{{this.id}}" method="GET">
+        <button>Edit</button>
+      </form>
+
+  <form action="/deleteBill/{{this.id}}" method="GET">
+        <button>Delete</button>
+      </form>
+
+
+  {{/each}}
+</ul>
+<br>
+{{else}}
+<h2 id="sign-up-text" id="greet-text">This is where all your bills are going to be!</h2>
+
+<br>
+    <a href="/createBill">Create a new bill</a>
+    
+{{/if}}
