@@ -13,30 +13,35 @@
   <body>
 
   <nav>
-    {{#if userInSession}}
     <ul>
-      <li id="to-left"> <a href="/"> Home |</a> </li>
-      <li> <a href="/userHome"> My Reminders |</a> </li> 
-      <li> <a href="/userProfile"> My Account |</a> </li> 
-      <li> <a href="/create"> Create new Reminder |</a> </li> 
+      <li><img src="/images/Remind_-MEE__2_-removebg-preview.png" alt="logo" ></li>
+      <li><p>Remind-Mee</p></li>
+      
+    
+    {{#if userInSession}}
+      {{!-- <li id="in-sess-home"> <a href="/">Home</a> </li>
+      <li id="bar-user">|</li> --}}
+      <li id="in-sess-rem"> <a href="/userHome">Reminders</a> </li> 
+      <li> <a href="/userProfile">Profile</a> </li> 
+      {{!-- <li> <a href="/create">New Reminder </a> </li>  --}}
 
-      <li id="to-right">
-          <form action="/logout" method="POST">
-            <button type="submit">Logout</button>
-          </form>
-      </li>
+      <li id="logout"> <form action="/logout" method="POST"><button type="submit">Logout</button></form></li>
     </ul> 
     {{else}}
     <ul>
-      <li> <a href="/signup">Signup</a> <span> | </span> </li> 
-      <li> <a href="/login">Login</a> <span> | </span>  </li> 
-      <li> <a href="/"> Home </a> </li> 
+      <li id="homeLink"> <a href="/"> Home </a> </li>
+      <li id="bar">|</li>
+      {{!-- <li> <a href="/">Home</a> </li>  --}}
+      <li><a href="/signup">Signup</a></li> 
+      <li> <a href="/login">Login</a> </li> 
     </ul>
     
     {{/if}}
   </nav>
 
+    <section id="large-image-with-text">
     {{{body}}}
+    </section>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
