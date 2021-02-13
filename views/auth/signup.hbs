@@ -1,21 +1,26 @@
 
-<div id="signup">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
-    <label for="input-username">Username</label>
+<div>
+  {{!-- <h2 id="sign-up-text">Signup for free <br> to keep up with your dues</h2> --}}
+  <h2 id="sign-up-text">Signup for free <br> to start being reminded.</h2>
+
+  <form id="sign-up-form" action="/signup" method="POST">
+    <label for="input-username">Create your username</label>
     <input type="text" id="input-username" name="username" placeholder="Your username" />
 
-    <label for="input-email">Email</label>
+    <label for="input-email">What's your email?</label>
     <input type="email" id="input-email" name="email" placeholder="Your email" />
 
-    <label for="input-password">Password</label>
+    <label for="input-password">Create a password</label>
     <input type="password" name="password" id="input-password" placeholder="********" />
 
-    <button type="submit">Create account</button>
+    <button type="submit">SIGN UP</button>
+
+    <p>Have an account? <a href="/login">Log in</a>.</p>
 
     {{!-- error message will be added here --}}
     {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
   {{/if}}
   </form>
+
 </div>
