@@ -306,6 +306,7 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
 #bill-1 {
   background-color: #ffffffa6;
   font-weight: bold;
@@ -329,4 +330,46 @@ ul li {
   font-size: 250%;
   border-radius: 10px;
   background-color: violet;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////PROFILE//////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////// */
+
+#welcome-profile {
+  margin-top: 180px;
+
+  padding: 12% 0 0 0;
+  text-align: center;
+  color: cornflowerblue;
+  font-weight: bold;
+  font-size: 2.5em;
+  /* color: rgb(82, 141, 250); */
+  -webkit-text-stroke: 1.5px black;
+  text-shadow: 1px 2px 0 rgba(68, 4, 36, 0.698),
+    1px 2px 0 rgba(68, 4, 36, 0.698), 4px 1px 0 rgba(68, 4, 36, 0.698),
+    3px 1px 0 rgba(68, 4, 36, 0.698), 1px 1px 0 rgba(68, 4, 36, 0.698);
+  /* font-weight: bold; */
+  /* text-decoration: none; */
+  /* font-size: 1.5em; */
+}
+
+#wel-profile {
+  text-align: center;
+  color: cornflowerblue;
+  font-weight: bold;
+  font-size: 2.5em;
+  /* color: rgb(82, 141, 250); */
+  -webkit-text-stroke: 1.5px black;
+  text-shadow: 1px 2px 0 rgba(68, 4, 36, 0.698),
+    1px 2px 0 rgba(68, 4, 36, 0.698), 4px 1px 0 rgba(68, 4, 36, 0.698),
+    3px 1px 0 rgba(68, 4, 36, 0.698), 1px 1px 0 rgba(68, 4, 36, 0.698);
+  /* font-weight: bold; */
+  /* text-decoration: none; */
+  /* font-size: 1.5em; */
+}
+
+#reload {
+  margin-left: 810px;
+  margin-top: 80px;
 }
