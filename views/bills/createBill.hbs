@@ -1,0 +1,29 @@
+<br>
+<h3>{{title}}</h3>
+
+
+
+<div id="form">
+  <h2>Create new bill</h2>
+  <form action="/createBill" method="POST">
+    <label for="accountName"> Account Name</label>
+    <input type="text" id="input-email" name="accountName" placeholder="Bill name">
+
+    <label for="paymentDue">Payment due:</label>
+		{{!-- <input type="string" name="time" placeholder="MM-DD-YYYY hh:mma"> --}}
+    <input type="date" name="paymentDue">
+  
+  
+    <label for="reminder">Reminder:</label>
+    <select name="reminder">
+          <option value="">-</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+    </select>
+
+
+    <button type="submit">Create</button>
+
+
+  </form>
+</div>

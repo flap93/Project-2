@@ -53,6 +53,8 @@ app.locals.slogan = "Remembering is the key";
 app.use('/', require('./routes/index.routes'));
 app.use('/', require('./routes/auth.routes'));
 app.use('/',  require('./routes/reminder.routes'));
+app.use('/',  require('./routes/bill.routes'));
+
 
 
 // Catch missing routes and forward to error handler
